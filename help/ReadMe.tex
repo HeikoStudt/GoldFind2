@@ -1,0 +1,239 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[latin1]{inputenc}
+%\usepackage{graphicx}
+\date{31. M\"arz 2002}
+\author{Heiko Studt \textless{}Heiko.Studt@goldpool.org\textgreater}
+\title{ReadMe for GoldFind 2.0.4.0}
+\begin{document}
+  \maketitle
+  \begin{abstract}
+    %\includegraphics{GoldFind.bmp}
+    GoldFind is a search utility for Hamster, \emph{the} mail- and newsserver. \\
+    GoldFind is maintained by Heiko Studt \\
+    GoldFind is an improved version of "AgtFind" originally written by Juergen Haible.
+  \end{abstract}
+  \tableofcontents
+  \pagebreak[4]
+  
+  \section{Install}
+    For all the following methods you need Hamster in Version 1.3.23.0 and above.
+    \subsection{Only with OLE}
+      \begin{enumerate}
+        \item You will need a Hamster-Version above 1.3.23.0\footnote{Download: http://www.tglsoft.de}
+        \item You need a version of GoldFind which uses OLE. (All versions yet; look into your changes.txt.)
+        \item You have to unzip the whole package into one directory. You can choose every one you want, but perhaps it would be best to have an own for Goldfind...
+        \item Now you have to start Hamster. Please note that it must \emph{not} be started as a service
+        \footnote{
+> Mmh. Gibt es da bekannte Einschränkungen, wenn Hamster als Service
+> läuft?
+
+Ja, unter NT/W2K und XP gibt es bezüglich Zugriffsrechte auf den
+OLE-Server Beschränkungen, welche aus der Prozesstrennung herrühren. Bei
+Verwendung von WinXP ist der Zugriff auf den Dienst-Hamster nur
+OLE-Clienten möglich, welche vom Dienst-Hamster selber per Script
+gestartet wurden. Da bei einem Dienst-Hamster unter WinXP Scripte nicht
+durch eine zweite Instanz gestartet werden können, (ebenfalls wegen der
+Prozesstrennung) kommen hierfür nur OLE-Clients in Frage welche via
+Scheduler oder Action-Script gestartet wurden. Bei der Windows-XP *Prof*
+Version könntest Du versuchen, die Zugriffsrechte des OLE-Server manuell
+in der System-Management-Console zu konfigurieren. Das ist aber alles
+andere als trivial, da erhebliches Wissen um OLE/COM/DCOM erforderlich
+ist. Uneingeschränkt ist beim Dienst-Hamster nur der Remote-Control-Server
+zur Fernsteuerung verwendbar.}
+
+        if you want to use GoldFind.
+        \item At least you start GoldFind itself and go into menu GoldFind to the Item "Configuration". A new window will be opened.
+           There you have to change in tab "Database" the first entry into "Hamster.App" i.e. the name of your Hamster's OLE-Interface.
+           Now click on the button "OK" and Voil\'a -- it's ready.
+      \end{enumerate}
+    \pagebreak[2]
+    \subsection{OLE together with KWKHamster.dll}
+      \subsubsection{Install the DLL}
+      
+"regsvr32 deine.dll";
+de-registrieren mit "regsvr32 /u deine.dll"
+
+        ToDo
+      \pagebreak[1]
+      \subsubsection{Install GoldFind}
+        First do the steps of "Install -\textgreater{} Only with OLE", because this method to get data doesn't remove all of the OLE-Code. 
+        It's only used for getting the Articles.
+        Second you need to change the source of GoldFind and recompile it. For this you have to unzip the "src.zip" which should be in your main GoldFind-Path.
+        In the source you have to change in file "ObjArt.pas" in the procedure "TAgtArt.Create" the line "UseDll := false;" into "useDll := true;".
+        Because of some problems with using the DLLs on other computers there is no warranty that it will work. The DLL don't work for running GoldFind on a remote computer.\\
+        KHKHamster.dll \copyright{} by Klaus Ketelaer
+    \pagebreak[2]
+    \subsection{OLE in enviroments with more than one Hamster}
+      As long as Hamster itself hasn't full support for a second full qualified OLE-Name to use with you have to patch Hamster.Exe to get that support.\\
+      \\
+      Please note that there is \emph{*no*} warranty in any kind. It's very dangerous to change a exe itself.\\
+      \\
+      \begin{verbatim}http://micha-wr.bei.t-online.de/hamster/tips.htm#011\end{verbatim}
+      \begin{quote}
+        Wie kann ich einen zweiten Hamster verwenden?
+        Um einen zweiten Hamster auf dem gleichen System aufzusetzten, sind einige Vorkehrungen zu treffen. Viele benutzen diese Kombination, um einen Hamster alle News und Mails holen zu lassen und dahinter einen zweiten Hamster laufen zu lassen, der sozusagen als Archivhamster arbeitet. So bleibt der erste Hamster durch Purgen immer schön schnell und der zweite Hamster archiviert dann alle Newsartikel in seinem Bestand. Folgendes ist zu tun:
+        \\
+        \begin{enumerate}
+          \item Eine Zweithamsterinstallation in ein anderes Verzeichnis. 
+          \item Konfiguration auf andere Ports als die Standardports 25/110/119, z.Bsp 1125/1110/1119, damit sich nichts behindert. 
+          \item Den neuen Hamster so einrichten, daß er die News vom ersten Hamster abholt. 
+          \item Die hamster.exe des neuen Hamsters patchen/bearbeiten, damit der Archivhamster per Script ansprechbar ist. (Anleitung unten) 
+            Heiko Rost verwendet schon seit längerem für solche Zwecke eine extra gepatchte Version der hamster.exe. Das Patchen geschieht entweder direkt mit einem Hexeditor oder einem Programm namens bchange. Folgende Anleitung stammt aus einem seiner Artikel in den Newsgroups:
+            \\ \\
+            Meine Patchdatei sieht mittlerweile so aus:
+            \\
+%            \small
+            \begin{verbatim}
+bchange hamster.exe hamster.exe 
+  "A2 B3 44 45 53 54 00 01" "A2 B3 44 45 53 54 00 02" /b
+  "48 61 6d 73 74 65 72 00 d6 16" "48 61 6d 73 74 65 31 00 d6 16" /b
+  "HamsterW" "Hamste1W"
+
+bchange ham.exe ham.exe
+  "Hamster.App" "Hamste1.App"
+            \end{verbatim}
+            Bchange steht hier zum Download bereit. (23 kB) Bei Problemen fragt bitte in news:hamster.de.tools nach, da Schwierigkeiten ab Hamster V1.3.23.110 auftreten können.
+        \end{enumerate}
+      \end{quote}
+  \pagebreak[3]
+  \section{Using GoldFind}
+    \subsection{Start}
+      On every start of GoldFind every single group is read and some informations like the count of articles in that group.
+
+    \pagebreak[2]
+    \subsection{Search}
+      To search for a string, for example "GoldFind" you have to enter that string into the edit-field "Find-What" and choose those parts where the string should be searched. (Checkboxes: Header, Body, Sig(nature))
+      The string could be in a "new" format of GoldFind or as a RegExp, which has to be included into breakes: \{ \}
+      Now you have to choose the groups where GoldFind should search on the left hand listbox and the days when the string was posted in the lower left corner.
+      At the end push the button "Search" at the upper right.%\linebreak
+      How many results you get at the maximum you can change by using "Max. articles".
+
+    \pagebreak[2]
+    \subsection{Statistics}
+      Making a statistic is very easy:
+      \begin{enumerate}
+        \item Go to tab "Statics" on right hand side.
+        \item Choose groups for those you want to make the statistic on the left side.
+          You can also choose the time the statistic will be based on.
+        \item Now you can choose the statistic in upper right corner of GoldFind and also some parameters if needed.
+        \item At the end you push button "Create".
+        \item You can cancel making statistics at the end of each group. (Clicking on the button will take effect on that time)
+      \end{enumerate}
+      \subsubsection{Graph}
+        If you had choosen one of the statistics "Messages per ", without weekday the graph is built.
+        You only have to go to the tab "Statistics-Graph" to see it.
+
+    \pagebreak[2]
+    \subsection{Configuration}
+
+    \pagebreak[2]
+    \subsection{Auto-Selection}
+
+    \pagebreak[2]
+    \subsection{Search-Format}
+
+  \pagebreak[3]
+  \section{Misc}
+    \subsection{Important Changes}
+
+    \pagebreak[2]
+    \subsection{Commandline-Parameters}
+      \begin{itemize}
+        \item n
+          GROUP \\
+          Make the selection of "GROUP". (Only one) \\
+          NOT IMPLEMENTED YET
+        \item m
+          MID or news:MID or nntp:MID \\
+          Search for Message-ID "MID" in all Groups. (Only one MID allowed)
+        \item i
+          MID\textbar{}GROUP or news:MID\textbar{}GROUP or nntp:MID\textbar{}GROUP \\
+          Searches either for Message-ID "MID" in all groups or make the selection of group "GROUP". \\
+          The selection of a group isn't implemented yet
+      \end{itemize}
+
+    \pagebreak[2]{}
+    \subsection{GoldFind files}
+      \begin{tabular}{|r|l|}
+        \hline
+        GoldFind.exe   &  Main-Progamm. Start it to start GoldFind \\
+        GoldFind.ini   &  Configuration-File (Textfile). \\& You can edit it if you want to \\
+        ReadMe.pdf     &  This helpfile in pdf-Format \\
+
+        KWKHamster.dll &  The DLL to access Hamster-Database. \\& For OLE-Only version not needed \\
+        src.zip        &  The sources of GoldFind (Delphi 5Pro) \\
+        \hline
+      \end{tabular}
+
+    \pagebreak[2]
+    \subsection{Source-Code}
+      I got most of the source from AgtFind developed by Juergen Haible. So don't kill only me if there is a bug in the source... ;-)
+      Some things in the sourcecode are only "workarounds" to get away some problems I got with changing AgtFind to accessing Hamster. Feel free to let me know better workarounds. :o)
+      Allthough I got some enhance in making GoldFind faster, it is never the fastest source I'd written. Perhaps you will find some faster ways to do those things...
+      Source-files:\\
+        \begin{tabular}{rl}
+          GoldFind.*          & Main project-source and ressources. (Delphi-Interna) \\
+          Main.pas            & Main GUI and it's code. Also some other code is here. \\
+          Main.dfm \\
+          OPTIONS.pas         & Configuration GUI and it's code. \\
+          OPTIONS.dfm \\
+          Viewer.pas          & ???\\
+          Viewer.dfm \\
+          ObjArray.pas        & ???\\
+          uHamDLL.pas         & Accessing the KWKHamster.dll of Klaus Ketelaer. \\& It's the Layer between DLL and GoldFind(ObjArt.pas). \\
+          ObjArt.pas          & Accessing the DB to get articles out of given \\& group(number)s. \\
+          ObjGrp.pas          & Accessing the DB to get all available groups and \\& their informations. \\
+          DllArt.pas          & Layer between Obj*.pas and GoldFind. \\& To be deleted in later versions \\
+          DllGrp.pas \\
+          AGTSTAT.PAS         & Creation of statistics \\
+          AGTBASE.PAS         & Misc and basic routines for accessing DB \\
+
+          cStats.pas          & Statistic-Counter-List\\
+          uArticle.pas        & Article-Handling -- eg. Header/Body -seperation \\
+          kProgress.pas       & Progressbar-Komponent (GoldFind-Start) \\
+          jAbout.pas          & The about-box and it's code.\\
+          jAbout.dfm \\
+          cArts.pas           & Routines for handling Articles. (eg. ROT13) \\
+          uEncoding.pas       & Routines for en-/decoding of articles and their headers. \\
+          uperlre.pas         & Libary to use RegExp. \copyright{} by Luu Tran \\
+          STUDY.OBJ \\
+          PCRE.OBJ \\
+
+          ReadMe.tex          & Sourcecode of this Tex-->DVI-->PDF documentation \\
+          License.txt         & The license of GoldFind\\
+          *.bmp; *.gif; *.ico & Ressouces for GoldFind (Images) \\
+          KWKHamster.dll      & Libary to access Hamster's database directly. \\& Have to be included in system.\\
+          ToDo.txt            & ToDo-Textfile for developing GoldFind
+        \end{tabular}
+
+    \pagebreak[4]
+    \subsection{License}
+      \begin{verbatim}
+============================================================================
+GoldFind
+Copyright (c) 2002,      Heiko Studt (<Heiko.Studt@goldpool.org>).
+
+AgtFind.
+Copyright (c) 1996-2001, Juergen Haible (<juergen.haible@t-online.de>).
+
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to
+deal in the Software without restriction, including without limitation the
+rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+sell copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+IN THE SOFTWARE.
+============================================================================
+      \end{verbatim}
+\end{document}

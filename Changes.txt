@@ -1,0 +1,135 @@
+
+Changes
+=======
+
+Vr. 2.0.4.0 () (HSR)
+- Chg: As date you also could give ','; '.'; '-'; '\'; '/'
+       Examples: 20-11-2002  20.11.2002  20/11/2002
+- Chg: Layout of GUI. Now you can change groups and dates to 
+       search/make stats immidiatelly. Also now it's the same date-edit.
+       Now quick-selections are made by menu.
+       (Delete: Change name to '' (nothing))
+- Add: Find-In: "Return" (#13) begins the search
+- Fix/Add: "Folding" of Headers (Bugfixes)
+- Add: "Browsing": If checked you can "browse" through groups with findable 
+       string. Every single group clicked will be searched for given string.
+- 2Do: FindBegin/FindEnd changing, 'cause not all things are in 
+       tabbednotebook anymore...
+Note: *Please* don't click on groups or on the panel with times while you're 
+      searching, because that's not disabled yet!
+
+(Alpha-Fix: Keys had commands on it, so it wasn't usefull)
+- Add: Support for a DLL to use the Hamster-Database itself in Sourcecode.
+       It's written by Klaus Ketelaer. *THANKS*. :-)
+       Perhaps you'll need a VB-Runtime for using the DLL.
+       To switch the DLL on you have to change in Source "UseDll" to true 
+       and recompile. (ObjArt: tAgtArt.Create)
+
+For some reason the whole thing doesn't work. Don't know how to fix/chage it.
+I'll ask one.
+
+regsvr32 deine.dll
+deregistrieren mit 
+regsvr32 /u deine.dll
+
+
+- Fix: "Time" was allways "00:00"
+- Add: Now all the found texts are shown red and italic.
+- Add: Progress-Splash-Screen at beginning
+- Chg: You can't get onto tab "statistic-graph" if you don't have a graph 
+       painted anymore.
+
+
+Vr. 2.0.3.0 (11 Mar 2002) (HSR)
+- Chg: Now it's faster. The XOver won't be loaded twice for searching
+       WooW!!! Groups bigger than 41000 Article in less than 30 Sec!
+
+Vr. 2.0.2.0 (13 Jan 2002) (HSR)
+- Fix: "All selected Groups" appeared every time. (even if only one group 
+       was selected)
+- Fix: Titel of statistics weren't correct.
+- Fix: Subject/From of result-window weren't decoded.
+- Add: Decode of Article-header in Result-Window
+- Add: *Bold*, /Italic/, _underlined_, -strikeout-
+- Fix: Newest Article in a group wasn't be searched.
+- Chg: Misc performance speed.
+- Add: Support to open an article in default newsreader.
+       (URL: "news:mid")
+- Chg: Look & Feel: Menu-->Configuration for tab "Options".
+       (Prepare for configuration of colors and view)
+- Add: Support for Links in Result-Window. Now you can execute HTTP/FTP-Links.
+       (You have to have a default programm for it enabled)
+- Fix: Dupes were found
+- Add: Commandlineparameter: 
+         -m<mid>   Search for Message-Id <mid>
+
+ ToDo: Decode of article body
+       Should that be implemented?
+
+
+Vr. 2.0.1.0 (06 Jan 2001) (HSR)
+- Add: Statistic "Messages per Weekday". Not yet as a graph
+- Add: Result-window: Popup-Menu: ROT13; Copy; Mark
+       "Mark" only colors the selection.
+- Fix: SIGs now only be shown, if there's no "-- " later.
+- Add: Those header-parts standing in another line are grayed.
+- Add: Chart can be shown in 3D.
+- Add: Chart can be exported in Bitmap/WMF/EMF-Format to File and Clipboard
+- Fix: Group-Article-Count was shown with one decreased.
+- Chg: New icon. THX to Michael Gebert for creating! :-)
+- Chg: Messages per Day now have "real" weeks with weekdays. {JH}
+- Chg: Messages per Day now looks out better. ;-)
+- Chg: Messages per Month/Hour now have "simple" Tabs.
+- Chg: Statistic-window now uses same font as result-window.
+- Chg: GroupID isn't shown anymore.
+- Chg: Export as file now with (automatic) extension of the file.
+
+
+Vr. 2.0.0.1 (30 Dec 2001) (HSR)
+- Fix: Graph was buggy, 'cause I'd used the wrong command... :-/
+
+Vr. 2.0.0.0 (29 Dec 2001) (HSR)
+- Chg: Renamed to "GoldFind" 
+       Version-Number now is 2.0
+- Fix: Not all postings were be searched
+- Fix: Minor Bugfixes all along...
+- Chg: Minor GUI-Changes.
+- Add: Graph for "Messages per xyz"
+- Chg: Now you can tip in the name of your Hamster-OLE-Server.
+       Normally it's "Hamster.App".
+- Add: Quotes are shown blue in "Results"-window. (<eg>@-jh-)
+- Add: Header-names are shown red in "Results"-window.
+- Add: Signature is shown green if it was correct seperated.
+
+Vr. 1.7.3.2 (27 Dec 2001) (HSR --> Heiko Studt <Heiko.Studt@goldpool.org>)
+- Chg: Database now is Hamster's OLE-server. Please note that there's 
+       *no* GUI-change for it at the moment and some things are obsolete 
+       and others may be different. You have to write into your INI as path:
+       "Hamster.App" (without quotes) {HSR}
+
+Vr. 1.7.3.0 (14 Oct 2001)
+- Fix: Ctrl+Shift+C/X/V to select a group collection also executed
+       clipboard functions (Ctrl+C/X/V).
+- Chg: Ctrl+A/C/X/V now also should work at path setup.
+- New: Shortcut Ctrl+G to open current message in Agent.
+- New: Ctrl+L opens a separate window with current message or
+       statistics. Ctrl+Enter toggles between both windows.
+
+Vr. 1.7.2.0 (11 Oct 2001)
+- Fix: "Messages per Month"-statistic ...
+- New: Statistics now also contain sum over all selected groups.
+- New: "DAU Jones ;-) (grouped, name)", i.e. based on name only,
+       mail address is ignored.
+
+Vr. 1.7.1.0 (06 Oct 2001)
+- Fix: If AgtFind was closed in maximized state, the state was not
+       recovered correctly on next start.
+- Fix: "Msg./day" has now at least one space between counters.
+- Fix: Shortcuts on statistics page (^V/F3 were executed twice).
+- Src: - TStatList-class (cStats.pas) replaced former TStringLists
+         used for creating statistics.
+       - Article related functions moved to cArts.pas
+- Chg: Key values for statistics (e.g. From:-header) should now be
+       case independent, so "AAA" and "aaa" are treated the same.
+- New: "Messages per Month"-statistic.
+

@@ -1,0 +1,51 @@
+Hi,
+
+da -jh- seine Sourcen von AgtFind freigelegt hat und schon seit l‰ngerem Bedarf besteht und auch "gefordert" wurde, Hamster f¸r den AgtFind verf¸gbar zu machen, habe ich in den letzten Tagen die AgtFind-Motorhaube aufgeklappt und ein wenig geschraubt und gebastelt...
+
+AgtFind ist ein Such-/Statistik-Tool der Spitzenklasse. 
+Ber¸hmt/Ber¸chtigt wurde es f¸r seinen "DAU Jones ;-)".
+
+
+Nun der offizielle Announce:
+
+
+GoldFind 2.0, das AgtFind f¸r Hamster.
+
+
+Neue Features:
+
+  -Hamster-Datenbank wird statt der Agent-Datenbank ben¸tzt.
+   (Schnittstelle: OLE)
+
+  -Farbige Hervorhebung von Quotes, Header und Signaturen im "Result"-Fenster
+
+  -Diagramm f¸r "Messages per xyz" (!)
+
+
+
+Die Versionsnummer 2.0 habe ich gew‰hlt, da es nun einen Bruch zum "alten" 
+AgtFind geben wird und die Hamster-Datenbank f¸r AgtFind verschlossen bleiben
+wird. Ich werde mein Mˆglichstes tun um neue Features von sp‰teren AgtFind-
+Versionen einzubauen, aber mehr als das kann ich nicht versprechen.
+
+Inwieweit -jh- die neuen Features von GoldFind in Agtfind ¸bernehmen will und
+wird, ist mir auch noch nicht bekannt.
+
+Die Version 2.0 ist "Freeware" und der Source ist beigeliefert. F¸r genauere
+Einschr‰nkungen dazu muﬂ die mitgelieferte License.txt gelesen werden.
+
+
+Hinweis: "Hamster.App" muﬂ in Options->"OLE 0:" eingetragen sein.
+         Falls immer noch keine Gruppen erscheinen muﬂ man auf das Eingabe-
+         Feld klicken und danach auf "Selection".
+
+
+Download von GoldFind unter http://www.goldpool.org
+
+
+F'up2: hamster.de.tools
+
+MFG, HTH
+
+-- 
+Heiko 'Privat' Studt
