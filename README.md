@@ -5,9 +5,21 @@ I originally programmed this software around the year 2000 basing upon AgtFind
 (by Juergen Haible). This version does use OLE calling the Hamster API.
 Therefore, this util is very(!) slow and very reliant on Hamster.
 
-In those years I've compiled with Delphi 5 having some Extensions (RxLib, Tx, perhaps more).
+As written in the license of GoldFind 3, there was a newer version
+by Miroslav Sabljic. I don't remember where I could have that source 
+and do not know, whether I am allowed to put those new files here...
 
 There is a newer version GoldFind 3.1.* I will upload as well.
+
+I did not put the old ZIP files with old binaries or source, but added the
+Readme-PDF/HLP files, though .hlp is nowadays deprecated.
+
+# Building
+In those years I've compiled with Delphi 5 having some Extensions (RxLib, Tx, 
+perhaps more).
+
+The documentation seems to be compiled via LaTeX. Don't ask which version 
+and what tools I'd used...
 
 
 # Old ToDo-List (German)
